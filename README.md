@@ -2,11 +2,11 @@
 
 ---
 
-# FlashQuestions
+# Flash Questions
 <p align="center">
   <img src="assets/logo.png" width="200"/>
 </p>
-FlashQuestions is a Flutter application that lets you archive your questions digitally and study them using the spaced repetition method.
+Flash Questions is a Flutter application that lets you archive your questions digitally and study them using the spaced repetition method.
 
 ## Features
 
