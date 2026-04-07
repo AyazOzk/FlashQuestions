@@ -1,5 +1,5 @@
 [🇹🇷 Türkçe](README.tr.md)
-
+A flashcard app but for questions. 
 ---
 
 # Flash Questions
