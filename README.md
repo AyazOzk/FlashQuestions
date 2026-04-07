@@ -44,6 +44,6 @@ Flash Questions is a Flutter application that lets you archive your questions di
   <img src="https://files.catbox.moe/vlqc1f.jpg" width="23%" />
 </p>
 
-## Lisans
+## Licence
 
 This project is licensed under the GNU General Public License v3.0.
