@@ -74,7 +74,7 @@ class _QuestionFormState extends State<QuestionForm> {
 
   Future<void> _pickImage(ImageSource src, bool isSolution) async {
     final file =
-        await _picker.pickImage(source: src, imageQuality: 60, maxWidth: 800);
+        await _picker.pickImage(source: src, imageQuality: 90, maxWidth: 1500);
     if (file != null) {
       setState(() {
         if (isSolution) {
@@ -843,16 +843,16 @@ class QuestionCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                width: 44,
-                height: 44,
+                width: 40,
+                height: 40,
                 decoration: BoxDecoration(
                   color: Colors.white.withValues(alpha: 0.8),
                   borderRadius: BorderRadius.circular(14),
                   border: Border.all(color: Colors.white),
                 ),
-                child: Icon(subj.icon, color: subj.color, size: 22),
+                child: Icon(subj.icon, color: subj.color, size: 20),
               ),
-              const SizedBox(width: 12),
+              const SizedBox(width: 8),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -866,7 +866,8 @@ class QuestionCard extends StatelessWidget {
                       ),
                       overflow: TextOverflow.ellipsis,
                     ),
-                    Row(
+                    Wrap(
+                      crossAxisAlignment: WrapCrossAlignment.center,
                       children: [
                         Text(
                           diff.$1,
@@ -914,10 +915,9 @@ class QuestionCard extends StatelessWidget {
                 color: const Color(0xFFBF5AF2),
                 onTap: () => _showAIMenu(context),
               ),
-              const SizedBox(width: 4),
               Container(
-                width: 40,
-                height: 40,
+                width: 36,
+                height: 36,
                 decoration: BoxDecoration(
                   color: Colors.white.withValues(alpha: 0.65),
                   borderRadius: BorderRadius.circular(12),
@@ -929,7 +929,7 @@ class QuestionCard extends StatelessWidget {
                     style: const TextStyle(
                         color: kText,
                         fontWeight: FontWeight.w900,
-                        fontSize: 18),
+                        fontSize: 16),
                   ),
                 ),
               ),
