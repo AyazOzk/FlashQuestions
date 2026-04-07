@@ -37,6 +37,13 @@ FlashQuestions, sorularını dijital ortamda arşivlemeni ve aralıklı tekrar y
   <img src="https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white" />
 </p>
 
+<p align="center">
+  <img src="https://files.catbox.moe/lcopt4.jpg" width="23%" />
+  <img src="https://files.catbox.moe/ti620c.jpg" width="23%" />
+  <img src="https://files.catbox.moe/ylstql.jpg" width="23%" />
+  <img src="https://files.catbox.moe/vlqc1f.jpg" width="23%" />
+</p>
+
 ## Lisans
 
 Bu proje GNU General Public License v3.0 ile lisanslanmıştır.
