@@ -24,7 +24,7 @@ Flash Questions is a Flutter application that lets you archive your questions di
 
 ## Installation
 <p align="center">
-  <a href="https://github.com/AyazOzk/FlashQuestions/releases/latest/download/flashquestions.apk">
+  <a href="https://github.com/AyazOzk/FlashQuestions/releases/latest/download/app-release.apk">
     <img src="https://img.shields.io/badge/Download-APK-green?style=for-the-badge&logo=android" />
   </a>
   <img src="https://img.shields.io/github/stars/AyazOzk/FlashQuestions?style=for-the-badge" />
