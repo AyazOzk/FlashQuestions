@@ -1,17 +1,27 @@
-# flashquestions
+[🇹🇷 Türkçe](README.tr.md)
 
-A new Flutter project.
+---
 
-## Getting Started
+# FlashQuestions
+<p align="center">
+  <img src="assets/logo.png" width="200"/>
+</p>
+FlashQuestions is a Flutter application that lets you archive your questions and study them using the spaced repetition method.
 
-This project is a starting point for a Flutter application.
+## Features
 
-A few resources to get you started if this is your first Flutter project:
+- 📚 Upload questions and build your own archive
+- 🔁 Spaced repetition with Flashcard system
+- 📄 Solve questions via PDF or in-app mode
+- 🤖 AI-powered question analysis (redirects to Gemini, ChatGPT etc.)
+- 🔍 Similar question generation support
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+## How It Works
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. Upload your questions and create an archive
+2. The app shows you questions at scheduled intervals
+3. Choose to solve them in PDF or in-app mode
+4. For AI analysis, a preset prompt is added to the question photo and shared to apps like Gemini or ChatGPT
+
+## Installation
+```bash

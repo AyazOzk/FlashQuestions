@@ -73,7 +73,8 @@ class _QuestionFormState extends State<QuestionForm> {
   }
 
   Future<void> _pickImage(ImageSource src, bool isSolution) async {
-    final file = await _picker.pickImage(source: src, imageQuality: 60, maxWidth: 800);
+    final file =
+        await _picker.pickImage(source: src, imageQuality: 60, maxWidth: 800);
     if (file != null) {
       setState(() {
         if (isSolution) {
@@ -133,7 +134,8 @@ class _QuestionFormState extends State<QuestionForm> {
           padding: const EdgeInsets.only(top: 12),
           child: CupertinoTextField(
             controller: ctrl,
-            placeholder: isSubject ? 'New Subject Name'.t : 'New Difficulty Name'.t,
+            placeholder:
+                isSubject ? 'New Subject Name'.t : 'New Difficulty Name'.t,
           ),
         ),
         actions: [
@@ -208,10 +210,17 @@ class _QuestionFormState extends State<QuestionForm> {
   @override
   Widget build(BuildContext context) {
     final allSubj = [...subjectMap.keys, ...widget.availableCustomSubjects];
-    if (_subject.isNotEmpty && !allSubj.contains(_subject)) allSubj.add(_subject);
+    if (_subject.isNotEmpty && !allSubj.contains(_subject)) {
+      allSubj.add(_subject);
+    }
 
-    final allDiff = [...difficultyMap.keys, ...widget.availableCustomDifficulties];
-    if (_difficulty.isNotEmpty && !allDiff.contains(_difficulty)) allDiff.add(_difficulty);
+    final allDiff = [
+      ...difficultyMap.keys,
+      ...widget.availableCustomDifficulties
+    ];
+    if (_difficulty.isNotEmpty && !allDiff.contains(_difficulty)) {
+      allDiff.add(_difficulty);
+    }
 
     return DraggableScrollableSheet(
       initialChildSize: 0.85,
@@ -249,8 +258,9 @@ class _QuestionFormState extends State<QuestionForm> {
                     ),
                   ),
                 ),
-                SheetTitle(widget.question == null ? 'Add New Question'.t : 'Edit Question'.t),
-
+                SheetTitle(widget.question == null
+                    ? 'Add New Question'.t
+                    : 'Edit Question'.t),
                 const FormLabel('Title (Optional)'),
                 CupertinoTextField(
                   controller: _titleCtrl,
@@ -265,7 +275,6 @@ class _QuestionFormState extends State<QuestionForm> {
                   padding: const EdgeInsets.all(16),
                 ),
                 const SizedBox(height: 20),
-
                 const FormLabel('QUESTION PHOTO'),
                 GestureDetector(
                   onTap: () => _showPhotoSheet(false),
@@ -294,7 +303,8 @@ class _QuestionFormState extends State<QuestionForm> {
                                 top: 10,
                                 right: 10,
                                 child: GestureDetector(
-                                  onTap: () => setState(() => _photoPath = null),
+                                  onTap: () =>
+                                      setState(() => _photoPath = null),
                                   child: Container(
                                     width: 30,
                                     height: 30,
@@ -315,7 +325,8 @@ class _QuestionFormState extends State<QuestionForm> {
                         : Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Icon(Icons.camera_alt_rounded, color: kAccent, size: 32),
+                              const Icon(Icons.camera_alt_rounded,
+                                  color: kAccent, size: 32),
                               const SizedBox(height: 10),
                               Text(
                                 'Tap to add photo'.t,
@@ -330,7 +341,6 @@ class _QuestionFormState extends State<QuestionForm> {
                   ),
                 ),
                 const SizedBox(height: 20),
-
                 const FormLabel('SUBJECT'),
                 SizedBox(
                   height: 40,
@@ -358,7 +368,6 @@ class _QuestionFormState extends State<QuestionForm> {
                   ),
                 ),
                 const SizedBox(height: 20),
-
                 const FormLabel('DIFFICULTY'),
                 SizedBox(
                   height: 40,
@@ -386,9 +395,9 @@ class _QuestionFormState extends State<QuestionForm> {
                   ),
                 ),
                 const SizedBox(height: 20),
-
                 Glass(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                   child: Row(
                     children: [
                       Expanded(
@@ -410,7 +419,6 @@ class _QuestionFormState extends State<QuestionForm> {
                   ),
                 ),
                 const SizedBox(height: 12),
-
                 const FormLabel('CORRECT ANSWER'),
                 _isOpenEnded
                     ? CupertinoTextField(
@@ -444,7 +452,8 @@ class _QuestionFormState extends State<QuestionForm> {
                                     color: Colors.white.withValues(alpha: 0.65),
                                     borderRadius: BorderRadius.circular(16),
                                     border: Border.all(
-                                      color: isSelected ? kAccent : Colors.white,
+                                      color:
+                                          isSelected ? kAccent : Colors.white,
                                       width: isSelected ? 2.0 : 1.5,
                                     ),
                                   ),
@@ -465,7 +474,6 @@ class _QuestionFormState extends State<QuestionForm> {
                         }).toList(),
                       ),
                 const SizedBox(height: 20),
-
                 const FormLabel('Tags'),
                 Row(
                   children: [
@@ -485,7 +493,11 @@ class _QuestionFormState extends State<QuestionForm> {
                     const SizedBox(width: 8),
                     Expanded(
                       flex: 1,
-                      child: GlassBtn(label: 'Add', icon: Icons.add, compact: true, onTap: _addTag),
+                      child: GlassBtn(
+                          label: 'Add',
+                          icon: Icons.add,
+                          compact: true,
+                          onTap: _addTag),
                     ),
                   ],
                 ),
@@ -497,15 +509,17 @@ class _QuestionFormState extends State<QuestionForm> {
                       runSpacing: 6,
                       children: _tags
                           .map((t) => Chip(
-                                label: Text('#$t', style: const TextStyle(fontSize: 12)),
-                                onDeleted: () => setState(() => _tags.remove(t)),
-                                backgroundColor: Colors.white.withValues(alpha: 0.6),
+                                label: Text('#$t',
+                                    style: const TextStyle(fontSize: 12)),
+                                onDeleted: () =>
+                                    setState(() => _tags.remove(t)),
+                                backgroundColor:
+                                    Colors.white.withValues(alpha: 0.6),
                               ))
                           .toList(),
                     ),
                   ),
                 const SizedBox(height: 20),
-
                 const FormLabel('NOTE (OPTIONAL)'),
                 CupertinoTextField(
                   controller: _noteCtrl,
@@ -521,7 +535,6 @@ class _QuestionFormState extends State<QuestionForm> {
                   maxLines: 3,
                 ),
                 const SizedBox(height: 20),
-
                 const FormLabel('SOLUTION PHOTO'),
                 GestureDetector(
                   onTap: () => _showPhotoSheet(true),
@@ -533,7 +546,8 @@ class _QuestionFormState extends State<QuestionForm> {
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(color: Colors.white, width: 1.5),
                     ),
-                    child: _solutionPhotoPath != null && File(_solutionPhotoPath!).existsSync()
+                    child: _solutionPhotoPath != null &&
+                            File(_solutionPhotoPath!).existsSync()
                         ? Stack(
                             fit: StackFit.expand,
                             children: [
@@ -550,7 +564,8 @@ class _QuestionFormState extends State<QuestionForm> {
                                 top: 10,
                                 right: 10,
                                 child: GestureDetector(
-                                  onTap: () => setState(() => _solutionPhotoPath = null),
+                                  onTap: () =>
+                                      setState(() => _solutionPhotoPath = null),
                                   child: Container(
                                     width: 30,
                                     height: 30,
@@ -571,7 +586,8 @@ class _QuestionFormState extends State<QuestionForm> {
                         : Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Icon(Icons.image_search_rounded, color: kTeal, size: 24),
+                              const Icon(Icons.image_search_rounded,
+                                  color: kTeal, size: 24),
                               const SizedBox(width: 10),
                               Text(
                                 'Add Solution Photo'.t,
@@ -585,9 +601,11 @@ class _QuestionFormState extends State<QuestionForm> {
                           ),
                   ),
                 ),
-
                 const SizedBox(height: 32),
-                GlassBtn(label: 'Save', icon: Icons.check_circle_outline, onTap: _save),
+                GlassBtn(
+                    label: 'Save',
+                    icon: Icons.check_circle_outline,
+                    onTap: _save),
               ],
             ),
           ),
@@ -609,7 +627,8 @@ class QuestionCard extends StatelessWidget {
   });
 
   String _reviewLabel() {
-    final today = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
+    final today =
+        DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
     final reviewDate = DateTime(
       question.nextReview.year,
       question.nextReview.month,
@@ -656,7 +675,8 @@ class QuestionCard extends StatelessWidget {
     final header = TextPainter(
       text: TextSpan(
         text: 'Flash Questions AI Support'.t,
-        style: const TextStyle(color: kAccent, fontSize: 40, fontWeight: FontWeight.bold),
+        style: const TextStyle(
+            color: kAccent, fontSize: 40, fontWeight: FontWeight.bold),
       ),
       textDirection: TextDirection.ltr,
     )..layout();
@@ -705,7 +725,8 @@ class QuestionCard extends StatelessWidget {
 
     final boxH = promptPainter.height + 60;
     canvas.drawRRect(
-      RRect.fromRectAndRadius(Rect.fromLTWH(40, y, width - 80, boxH), const Radius.circular(24)),
+      RRect.fromRectAndRadius(
+          Rect.fromLTWH(40, y, width - 80, boxH), const Radius.circular(24)),
       Paint()..color = const Color(0xFFF2F2F7),
     );
     promptPainter.paint(canvas, Offset(60, y + 30));
@@ -713,10 +734,13 @@ class QuestionCard extends StatelessWidget {
 
     final picture = recorder.endRecording();
     final img = await picture.toImage(width.toInt(), y.toInt());
-    final bytes = (await img.toByteData(format: ui.ImageByteFormat.png))!.buffer.asUint8List();
+    final bytes = (await img.toByteData(format: ui.ImageByteFormat.png))!
+        .buffer
+        .asUint8List();
 
     final tmpDir = await getTemporaryDirectory();
-    final file = File('${tmpDir.path}/ai_prompt_${DateTime.now().millisecondsSinceEpoch}.png');
+    final file = File(
+        '${tmpDir.path}/ai_prompt_${DateTime.now().millisecondsSinceEpoch}.png');
     await file.writeAsBytes(bytes);
     return file;
   }
@@ -734,7 +758,8 @@ class QuestionCard extends StatelessWidget {
               const CupertinoActivityIndicator(),
               const SizedBox(height: 16),
               Text(
-                'Please wait.\nThis process may vary depending on your device\'s performance.'.t,
+                'Please wait.\nThis process may vary depending on your device\'s performance.'
+                    .t,
                 textAlign: TextAlign.center,
                 style: const TextStyle(fontSize: 13, height: 1.3),
               ),
@@ -748,7 +773,8 @@ class QuestionCard extends StatelessWidget {
       final file = await _buildAIImage(isAnalysis);
       if (context.mounted) {
         Navigator.pop(context);
-        await Share.shareXFiles([XFile(file.path)], subject: 'AI Question Template');
+        await Share.shareXFiles([XFile(file.path)],
+            subject: 'AI Question Template');
       }
     } catch (e) {
       if (context.mounted) {
@@ -757,7 +783,8 @@ class QuestionCard extends StatelessWidget {
           context: context,
           builder: (c) => CupertinoAlertDialog(
             title: Text('Error'.t),
-            content: Text('${'An error occurred while generating the image:'.t} $e'),
+            content:
+                Text('${'An error occurred while generating the image:'.t} $e'),
             actions: [
               CupertinoDialogAction(
                 onPressed: () => Navigator.pop(c),
@@ -843,11 +870,15 @@ class QuestionCard extends StatelessWidget {
                       children: [
                         Text(
                           diff.$1,
-                          style: TextStyle(color: diff.$2, fontSize: 12, fontWeight: FontWeight.w600),
+                          style: TextStyle(
+                              color: diff.$2,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600),
                         ),
                         if (question.correct > 0 || question.wrong > 0) ...[
                           const SizedBox(width: 8),
-                          const Icon(Icons.check_circle_rounded, color: kTeal, size: 12),
+                          const Icon(Icons.check_circle_rounded,
+                              color: kTeal, size: 12),
                           const SizedBox(width: 2),
                           Text(
                             '${question.correct}',
@@ -895,11 +926,15 @@ class QuestionCard extends StatelessWidget {
                 child: Center(
                   child: Text(
                     question.isOpenEnded ? '🖋' : question.answer,
-                    style: const TextStyle(color: kText, fontWeight: FontWeight.w900, fontSize: 18),
+                    style: const TextStyle(
+                        color: kText,
+                        fontWeight: FontWeight.w900,
+                        fontSize: 18),
                   ),
                 ),
               ),
-              IconBtn(icon: Icons.edit_outlined, color: kSubtext, onTap: onEdit),
+              IconBtn(
+                  icon: Icons.edit_outlined, color: kSubtext, onTap: onEdit),
               IconBtn(
                 icon: Icons.delete_outline_rounded,
                 color: CupertinoColors.destructiveRed,
@@ -912,7 +947,8 @@ class QuestionCard extends StatelessWidget {
               padding: const EdgeInsets.only(top: 10),
               child: Text(
                 question.title,
-                style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 16),
+                style:
+                    const TextStyle(fontWeight: FontWeight.w800, fontSize: 16),
               ),
             ),
           const SizedBox(height: 8),
@@ -937,12 +973,16 @@ class QuestionCard extends StatelessWidget {
                       color: urgent ? kAccent : kSubtext,
                     ),
                     const SizedBox(width: 4),
-                    Text(
-                      '${'Review: '.t}$label',
-                      style: TextStyle(
-                        color: urgent ? kAccent : kSubtext,
-                        fontSize: 11,
-                        fontWeight: FontWeight.w700,
+                    Flexible(
+                      child: Text(
+                        '${'Review: '.t}$label',
+                        softWrap: false,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          color: urgent ? kAccent : kSubtext,
+                          fontSize: 11,
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
                     ),
                   ],
@@ -950,7 +990,8 @@ class QuestionCard extends StatelessWidget {
               ),
               if (question.solutionPhotoPath != null)
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
                     color: kTeal.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(8),
@@ -972,7 +1013,8 @@ class QuestionCard extends StatelessWidget {
                   ),
                 ),
               ...question.tags.map((t) => Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
                       color: Colors.white.withValues(alpha: 0.8),
                       borderRadius: BorderRadius.circular(8),
@@ -988,9 +1030,11 @@ class QuestionCard extends StatelessWidget {
                   )),
             ],
           ),
-          if (question.photoPath != null && File(question.photoPath!).existsSync()) ...[
+          if (question.photoPath != null &&
+              File(question.photoPath!).existsSync()) ...[
             const SizedBox(height: 10),
-            PhotoWidget(path: question.photoPath!, heroTag: question.id, height: 170),
+            PhotoWidget(
+                path: question.photoPath!, heroTag: question.id, height: 170),
           ],
           if (question.note.isNotEmpty) ...[
             const SizedBox(height: 12),

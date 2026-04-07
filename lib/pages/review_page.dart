@@ -253,219 +253,254 @@ class _ReviewDialogState extends State<ReviewDialog> {
     final allDiff = [...difficultyMap.keys, ...widget.customDiffs];
 
     return DraggableScrollableSheet(
-      initialChildSize: 0.75,
-      minChildSize: 0.4,
+      initialChildSize: 0.85,
+      minChildSize: 0.5,
       maxChildSize: 0.95,
       expand: false,
-      builder: (_, scrollController) => BottomSheetContainer(
-        child: SingleChildScrollView(
-          controller: scrollController,
-          padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom + 24),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Center(
-                child: Container(
-                  margin: const EdgeInsets.only(bottom: 16),
-                  width: 40,
-                  height: 5,
-                  decoration: BoxDecoration(
-                    color: Colors.grey.withValues(alpha: 0.4),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
+      snap: true,
+      builder: (_, ScrollController scrollController) {
+        return Container(
+          decoration: const BoxDecoration(
+            color: Color(0xFFF2F2F7),
+            borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
+          ),
+          child: SafeArea(
+            child: SingleChildScrollView(
+              controller: scrollController,
+              physics: const ClampingScrollPhysics(),
+              padding: EdgeInsets.only(
+                left: 20,
+                right: 20,
+                top: 12,
+                bottom: MediaQuery.of(context).viewInsets.bottom + 24,
               ),
-              const SheetTitle('Review'),
-              Glass(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Select Random Questions'.t,
-                            style: const TextStyle(
-                              color: kText,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 15,
-                            ),
-                          ),
-                          const SizedBox(height: 4),
-                          Text(
-                            'Practice without affecting review dates.'.t,
-                            style: const TextStyle(color: kSubtext, fontSize: 11, height: 1.3),
-                          ),
-                        ],
-                      ),
-                    ),
-                    CupertinoSwitch(
-                      value: _randomMode,
-                      activeTrackColor: kAccent,
-                      onChanged: (v) {
-                        setState(() => _randomMode = v);
-                        _clampCount();
-                      },
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const FormLabel('NUMBER OF QUESTIONS'),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    child: Text(
-                      '${'Available'.t}: $maxCount',
-                      style: const TextStyle(
-                        color: kAccent,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w700,
+                  Center(
+                    child: Container(
+                      margin: const EdgeInsets.only(bottom: 16),
+                      width: 40,
+                      height: 5,
+                      decoration: BoxDecoration(
+                        color: Colors.grey.withValues(alpha: 0.4),
+                        borderRadius: BorderRadius.circular(10),
                       ),
                     ),
                   ),
-                ],
-              ),
-              Glass(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    IconBtn(
-                      icon: Icons.remove,
-                      onTap: () {
-                        if (_count > 1) setState(() => _count--);
-                      },
-                    ),
-                    Text(
-                      '$_count',
-                      style: const TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w800,
-                        color: kText,
-                      ),
-                    ),
-                    IconBtn(
-                      icon: Icons.add,
-                      onTap: () {
-                        if (_count < maxCount) {
-                          setState(() => _count++);
-                        } else {
-                          _warn('Selected count cannot exceed available questions.');
-                        }
-                      },
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 20),
-              const FormLabel('SUBJECT'),
-              SizedBox(
-                height: 40,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 8),
-                      child: ChipBtn(
-                        label: 'All',
-                        color: kAccent,
-                        selected: _subject == null,
-                        compact: true,
-                        onTap: () {
-                          setState(() => _subject = null);
-                          _clampCount();
-                        },
-                      ),
-                    ),
-                    ...allSubj.map((s) {
-                      final info = getSubjectInfo(s);
-                      return Padding(
-                        padding: const EdgeInsets.only(right: 8),
-                        child: ChipBtn(
-                          label: info.name,
-                          color: info.color,
-                          selected: _subject == s,
-                          compact: true,
-                          onTap: () {
-                            setState(() => _subject = s);
+                  const SheetTitle('Review'),
+                  Glass(
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Select Random Questions'.t,
+                                style: const TextStyle(
+                                  color: kText,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 15,
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                'Practice without affecting review dates.'.t,
+                                style: const TextStyle(color: kSubtext, fontSize: 11, height: 1.3),
+                              ),
+                            ],
+                          ),
+                        ),
+                        CupertinoSwitch(
+                          value: _randomMode,
+                          activeTrackColor: kAccent,
+                          onChanged: (v) {
+                            setState(() => _randomMode = v);
                             _clampCount();
                           },
                         ),
-                      );
-                    }),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 20),
-              const FormLabel('DIFFICULTY LEVEL'),
-              Wrap(
-                spacing: 8,
-                runSpacing: 8,
-                children: [null, ...allDiff].map((d) {
-                  final label = d == null ? 'All' : getDifficultyInfo(d).$1;
-                  final color = d == null ? kAccent : getDifficultyInfo(d).$2;
-                  return ChipBtn(
-                    label: label,
-                    color: color,
-                    selected: _difficulty == d,
-                    onTap: () {
-                      setState(() => _difficulty = d);
-                      _clampCount();
-                    },
-                  );
-                }).toList(),
-              ),
-              if (widget.allTags.isNotEmpty) ...[
-                const SizedBox(height: 20),
-                const FormLabel('Tags'),
-                Wrap(
-                  spacing: 8,
-                  runSpacing: 8,
-                  children: [null, ...widget.allTags].map((t) {
-                    final label = t == null ? 'All' : '#$t';
-                    return ChipBtn(
-                      label: label,
-                      color: kTeal,
-                      selected: _tag == t,
-                      onTap: () {
-                        setState(() => _tag = t);
-                        _clampCount();
-                      },
-                    );
-                  }).toList(),
-                ),
-              ],
-              const SizedBox(height: 32),
-              _isGeneratingPdf
-                  ? const Center(child: CupertinoActivityIndicator())
-                  : Row(
-                      children: [
-                        Expanded(
-                          child: GlassBtn(
-                            label: 'Export PDF',
-                            icon: Icons.picture_as_pdf_outlined,
-                            color: CupertinoColors.destructiveRed,
-                            onTap: _generatePdf,
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const FormLabel('NUMBER OF QUESTIONS'),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 10),
+                        child: Text(
+                          '${'Available'.t}: $maxCount',
+                          style: const TextStyle(
+                            color: kAccent,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w700,
                           ),
                         ),
-                        const SizedBox(width: 12),
-                        Expanded(
-                          child: GlassBtn(
-                            label: 'Start',
-                            icon: Icons.rocket_launch_rounded,
-                            onTap: _start,
+                      ),
+                    ],
+                  ),
+                  Glass(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconBtn(
+                          icon: Icons.remove,
+                          onTap: () {
+                            if (_count > 1) setState(() => _count--);
+                          },
+                        ),
+                        Text(
+                          '$_count',
+                          style: const TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.w800,
+                            color: kText,
                           ),
+                        ),
+                        IconBtn(
+                          icon: Icons.add,
+                          onTap: () {
+                            if (_count < maxCount) {
+                              setState(() => _count++);
+                            } else {
+                              _warn('Selected count cannot exceed available questions.');
+                            }
+                          },
                         ),
                       ],
                     ),
-            ],
+                  ),
+                  const SizedBox(height: 20),
+                  const FormLabel('SUBJECT'),
+                  SizedBox(
+                    height: 40,
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8),
+                          child: ChipBtn(
+                            label: 'All',
+                            color: kAccent,
+                            selected: _subject == null,
+                            compact: true,
+                            onTap: () {
+                              setState(() => _subject = null);
+                              _clampCount();
+                            },
+                          ),
+                        ),
+                        ...allSubj.map((String s) {
+                          final info = getSubjectInfo(s);
+                          return Padding(
+                            padding: const EdgeInsets.only(right: 8),
+                            child: ChipBtn(
+                              label: info.name,
+                              color: info.color,
+                              selected: _subject == s,
+                              compact: true,
+                              onTap: () {
+                                setState(() => _subject = s);
+                                _clampCount();
+                              },
+                            ),
+                          );
+                        }),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  const FormLabel('DIFFICULTY LEVEL'),
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: [
+                      ChipBtn(
+                        label: 'All',
+                        color: kAccent,
+                        selected: _difficulty == null,
+                        onTap: () {
+                          setState(() => _difficulty = null);
+                          _clampCount();
+                        },
+                      ),
+                      ...allDiff.map((String d) {
+                        final info = getDifficultyInfo(d);
+                        return ChipBtn(
+                          label: info.$1,
+                          color: info.$2,
+                          selected: _difficulty == d,
+                          onTap: () {
+                            setState(() => _difficulty = d);
+                            _clampCount();
+                          },
+                        );
+                      }),
+                    ],
+                  ),
+                  if (widget.allTags.isNotEmpty) ...[
+                    const SizedBox(height: 20),
+                    const FormLabel('Tags'),
+                    Wrap(
+                      spacing: 8,
+                      runSpacing: 8,
+                      children: [
+                        ChipBtn(
+                          label: 'All',
+                          color: kTeal,
+                          selected: _tag == null,
+                          onTap: () {
+                            setState(() => _tag = null);
+                            _clampCount();
+                          },
+                        ),
+                        ...widget.allTags.map((String t) {
+                          return ChipBtn(
+                            label: '#$t',
+                            color: kTeal,
+                            selected: _tag == t,
+                            onTap: () {
+                              setState(() => _tag = t);
+                              _clampCount();
+                            },
+                          );
+                        }),
+                      ],
+                    ),
+                  ],
+                  const SizedBox(height: 32),
+                  _isGeneratingPdf
+                      ? const Center(child: CupertinoActivityIndicator())
+                      : Row(
+                          children: [
+                            Expanded(
+                              child: GlassBtn(
+                                label: 'Export PDF',
+                                icon: Icons.picture_as_pdf_outlined,
+                                color: CupertinoColors.destructiveRed,
+                                onTap: _generatePdf,
+                              ),
+                            ),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: GlassBtn(
+                                label: 'Start',
+                                icon: Icons.rocket_launch_rounded,
+                                onTap: _start,
+                              ),
+                            ),
+                          ],
+                        ),
+                ],
+              ),
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }
@@ -500,7 +535,6 @@ class _ReviewPageState extends State<ReviewPage> {
 
   @override
   void dispose() {
-    // Always restore portrait when leaving the review screen.
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
