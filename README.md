@@ -1,4 +1,4 @@
-[🇹🇷 Türkçe](__README.tr.md__)
+[🇹🇷 Türkçe](README.tr.md)
 
 ---
 

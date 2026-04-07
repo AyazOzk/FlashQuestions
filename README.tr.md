@@ -6,7 +6,7 @@
 <p align="center">
   <img src="assets/logo.png" width="200"/>
 </p>
-Flash Questions, sorularını dijital ortamda arşivlemeni ve aralıklı tekrar yöntemiyle çalışmanı sağlayan bir Flutter uygulamasıdır.
+Flash Questions, sorularını dijital ortamda arşivlemeni ve aralıklı tekrar yöntemiyle çalışmanı sağlayan bir Flutter uygulamasıdır. Özellikle YKS çalışıyorsanız bu uygulama sizin için.
 
 ## Özellikler
 
