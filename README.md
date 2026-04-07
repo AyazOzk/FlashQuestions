@@ -1,4 +1,4 @@
-[🇹🇷 Türkçe](README.tr.md)
+[🇹🇷 Türkçe](__README.tr.md__)
 
 ---
 
@@ -6,22 +6,44 @@
 <p align="center">
   <img src="assets/logo.png" width="200"/>
 </p>
-FlashQuestions is a Flutter application that lets you archive your questions and study them using the spaced repetition method.
+FlashQuestions is a Flutter application that lets you archive your questions digitally and study them using the spaced repetition method.
 
 ## Features
 
-- 📚 Upload questions and build your own archive
-- 🔁 Spaced repetition with Flashcard system
-- 📄 Solve questions via PDF or in-app mode
-- 🤖 AI-powered question analysis (redirects to Gemini, ChatGPT etc.)
-- 🔍 Similar question generation support
+- 📚 Upload questions and build your archive
+- 🔁 Spaced repetition
+- 📄 Solve questions in bulk, export as PDF
+- 🔍 AI-powered question analysis and similar question generation (redirects to Gemini, ChatGPT, etc.)
 
-## How It Works
+## How It Works?
 
-1. Upload your questions and create an archive
-2. The app shows you questions at scheduled intervals
-3. Choose to solve them in PDF or in-app mode
-4. For AI analysis, a preset prompt is added to the question photo and shared to apps like Gemini or ChatGPT
+1. Start uploading your questions to the app.
+2. The app surfaces questions at scheduled intervals so you never forget how to solve even the ones you struggle with.
+3. Solve them as a PDF or directly within the app.
+4. A ready-made prompt is attached to the question photo for AI analysis, and you can share it with apps like Gemini or ChatGPT.
 
 ## Installation
-```bash
+<p align="center">
+  <a href="https://github.com/AyazOzk/FlashQuestions/releases/latest/download/flashquestions.apk">
+    <img src="https://img.shields.io/badge/Download-APK-green?style=for-the-badge&logo=android" />
+  </a>
+  <img src="https://img.shields.io/github/stars/AyazOzk/FlashQuestions?style=for-the-badge" />
+  <img src="https://img.shields.io/github/last-commit/AyazOzk/FlashQuestions?style=for-the-badge" />
+</p>
+
+#
+<p align="center">
+  <img src="https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white" />
+  <img src="https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white" />
+</p>
+
+<p align="center">
+  <img src="https://files.catbox.moe/lcopt4.jpg" width="23%" />
+  <img src="https://files.catbox.moe/ti620c.jpg" width="23%" />
+  <img src="https://files.catbox.moe/ylstql.jpg" width="23%" />
+  <img src="https://files.catbox.moe/vlqc1f.jpg" width="23%" />
+</p>
+
+## Lisans
+
+This project is licensed under the GNU General Public License v3.0.
